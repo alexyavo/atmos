@@ -17,14 +17,15 @@
  */
 package atmos.monitor
 
-import org.scalatest._
+import org.scalatest.flatspec.AnyFlatSpec
+import org.scalatest.matchers.should.Matchers
 import scala.concurrent.duration._
 import scala.util.{Failure, Success}
 
 /**
  * Test suite for [[atmos.monitor.IgnoreEvents]].
  */
-class IgnoreEventsSpec extends FlatSpec with Matchers {
+class IgnoreEventsSpec extends AnyFlatSpec with Matchers {
 
   val result = "result"
   val thrown = new RuntimeException

@@ -17,14 +17,15 @@
  */
 package atmos.monitor
 
-import org.scalatest._
+import org.scalatest.flatspec.AnyFlatSpec
+import org.scalatest.matchers.should.Matchers
 import scala.concurrent.duration._
 import scala.util.Failure
 
 /**
  * Test suite for [[atmos.monitor.FormatEvents]].
  */
-class FormatEventsSpec extends FlatSpec with Matchers {
+class FormatEventsSpec extends AnyFlatSpec with Matchers {
 
   val thrownWithMsg = new RuntimeException("ERROR!")
   val thrownWithoutMsg = new RuntimeException("")

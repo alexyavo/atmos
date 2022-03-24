@@ -21,11 +21,13 @@ import akka.event.{Logging, LoggingAdapter}
 import atmos.dsl.AkkaSupport._
 import atmos.monitor._
 import org.scalatest._
+import org.scalatest.flatspec.AnyFlatSpec
+import org.scalatest.matchers.should.Matchers
 
 /**
  * Test suite for [[atmos.dsl.AkkaSupport]].
  */
-class AkkaSupportSpec extends FlatSpec with Matchers {
+class AkkaSupportSpec extends AnyFlatSpec with Matchers {
 
   "AkkaSupport" should "support viewing Akka-logging-compatible objects as event monitors" in {
     val monitor = MockAdapter: LogEventsWithAkka

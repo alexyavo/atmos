@@ -20,14 +20,15 @@ package rummage
 import akka.actor.{ActorSystem, Cancellable, Scheduler}
 import java.util.concurrent.{Callable, ScheduledExecutorService, ScheduledFuture}
 import org.scalamock.scalatest.MockFactory
-import org.scalatest._
+import org.scalatest.flatspec.AnyFlatSpec
+import org.scalatest.matchers.should.Matchers
 import scala.concurrent.ExecutionContext
 import scala.concurrent.duration._
 
 /**
  * Test suite for the rummage timer API.
  */
-class TimersSpec extends FlatSpec with Matchers with MockFactory {
+class TimersSpec extends AnyFlatSpec with Matchers with MockFactory {
 
   "Timer" should "provide a fluent interface around task submission" in {
     import ExecutionContext.Implicits._

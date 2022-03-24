@@ -1,3 +1,6 @@
+# 2.3 (2022-03-24)
+- Forked to support scala 2.13.8. Dropping support for previous Scala versions.
+
 # 2.2 (2017-06-23) 
 
 - Forked to support scala 2.12. Pulled in rummage namespace to simplify deployment. Dropping 2.10 support

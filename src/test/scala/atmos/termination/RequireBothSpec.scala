@@ -17,13 +17,14 @@
  */
 package atmos.termination
 
-import org.scalatest._
+import org.scalatest.flatspec.AnyFlatSpec
+import org.scalatest.matchers.should.Matchers
 import scala.concurrent.duration._
 
 /**
  * Test suite for [[atmos.termination.RequireBoth]].
  */
-class RequireBothSpec extends FlatSpec with Matchers {
+class RequireBothSpec extends AnyFlatSpec with Matchers {
 
   "RequireBoth" should "signal for termination only when both of its child policies do" in {
     val policies = for {

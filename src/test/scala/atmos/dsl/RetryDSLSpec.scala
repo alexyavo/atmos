@@ -23,15 +23,17 @@ import akka.event.{Logging, LoggingAdapter}
 import java.io.{PrintWriter, StringWriter}
 import java.util.logging.{Level, Logger}
 import org.scalamock.scalatest.MockFactory
-import org.scalatest._
 import org.slf4j.LoggerFactory
 import scala.concurrent.duration._
 import scala.util.Try
+import org.scalatest.flatspec.AnyFlatSpec
+import org.scalatest.matchers.should.Matchers
+
 
 /**
  * Test suite for [[atmos.retries.RetryDSL]].
  */
-class RetryDSLSpec extends FlatSpec with Matchers with MockFactory {
+class RetryDSLSpec extends AnyFlatSpec with Matchers with MockFactory {
 
   import ErrorClassification._
   import ResultClassification._

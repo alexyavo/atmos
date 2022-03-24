@@ -21,10 +21,13 @@ import org.scalatest._
 import scala.concurrent.duration._
 import scala.util.{Failure, Success, Try}
 
+import org.scalatest.flatspec.AnyFlatSpec
+import org.scalatest.matchers.should.Matchers
+
 /**
  * Test suite for [[atmos.monitor.FormatEvents]].
  */
-class ChainedEventsSpec extends FlatSpec with Matchers with MockFactory {
+class ChainedEventsSpec extends AnyFlatSpec with Matchers with MockFactory {
 
   val result = "result"
   val monitor1 = mock[atmos.EventMonitor]

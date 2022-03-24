@@ -21,10 +21,13 @@ import org.scalatest._
 import scala.concurrent.duration._
 import scala.util.{Failure, Success}
 
+import org.scalatest.flatspec.AnyFlatSpec
+import org.scalatest.matchers.should.Matchers
+
 /**
  * Test suite for [[atmos.backoff.ConstantBackoff]].
  */
-class ConstantBackoffSpec extends FlatSpec with Matchers {
+class ConstantBackoffSpec extends AnyFlatSpec with Matchers {
 
   val result = "result"
   val thrown = new RuntimeException

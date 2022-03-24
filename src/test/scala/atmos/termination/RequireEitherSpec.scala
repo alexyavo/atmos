@@ -17,13 +17,14 @@
  */
 package atmos.termination
 
-import org.scalatest._
+import org.scalatest.flatspec.AnyFlatSpec
+import org.scalatest.matchers.should.Matchers
 import scala.concurrent.duration._
 
 /**
  * Test suite for [[atmos.termination.RequireEither]].
  */
-class RequireEitherSpec extends FlatSpec with Matchers {
+class RequireEitherSpec extends AnyFlatSpec with Matchers {
 
   "RequireEither" should "signal for termination as soon as either of its child policies do" in {
     val policies = for {

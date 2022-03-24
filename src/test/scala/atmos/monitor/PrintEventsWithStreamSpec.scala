@@ -18,12 +18,14 @@
 package atmos.monitor
 
 import java.io.{ByteArrayOutputStream, PrintStream}
-import org.scalatest._
+import org.scalatest.flatspec.AnyFlatSpec
+import org.scalatest.matchers.should.Matchers
+
 
 /**
  * Test suite for [[atmos.monitor.PrintEventsWithStream]].
  */
-class PrintEventsWithStreamSpec extends FlatSpec with Matchers {
+class PrintEventsWithStreamSpec extends AnyFlatSpec with Matchers {
 
   val encoding = "UTF-8"
   val message = "MSG"

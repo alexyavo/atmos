@@ -21,10 +21,13 @@ import org.scalatest._
 import scala.concurrent.duration._
 import scala.util.{Failure, Try}
 
+import org.scalamock.matchers.Matchers
+import org.scalatest.flatspec.AnyFlatSpec
+
 /**
  * Test suite for [[atmos.EventMonitor]].
  */
-class EventMonitorSpec extends FlatSpec with Matchers with MockFactory {
+class EventMonitorSpec extends AnyFlatSpec with Matchers with MockFactory {
 
   val thrown = new RuntimeException
 

@@ -23,16 +23,20 @@ import akka.event.{Logging => AkkaLogging, LoggingAdapter => AkkaLogger}
 import atmos.monitor._
 import java.io.{ByteArrayOutputStream, PrintStream, PrintWriter}
 import java.util.logging.{Level => JLevel, Logger => JLogger}
+
 import org.scalamock.scalatest.MockFactory
 import org.scalatest._
 import org.slf4j.{Logger => Slf4jLogger}
 import scala.concurrent.duration._
 import scala.util.{Failure, Success}
 
+import org.scalatest.flatspec.AnyFlatSpec
+import org.scalatest.matchers.should.Matchers
+
 /**
  * Test suite for the various ways to configure an [[atmos.EventMonitor]].
  */
-class EventMonitorConfigSpec extends FlatSpec with Matchers with MockFactory {
+class EventMonitorConfigSpec extends AnyFlatSpec with Matchers with MockFactory {
 
   val success = Success("")
   val exception = Failure(new Exception)
@@ -85,8 +89,9 @@ class EventMonitorConfigSpec extends FlatSpec with Matchers with MockFactory {
     import LogEventsWithSlf4j.Slf4jLevel
     import Slf4jSupport._
     val target = mock[MockSlf4jLogger]
-    (target.isInfoEnabled _).expects().returns(true).anyNumberOfTimes
-    (target.isWarnEnabled _).expects().returns(true).anyNumberOfTimes
+
+    (target.isInfoEnabled: () => Boolean).expects().returns(true).anyNumberOfTimes
+    (target.isWarnEnabled: () => Boolean).expects().returns(true).anyNumberOfTimes
     new TestCase[Slf4jLogger, LogEventsWithSlf4j, LogAction[Slf4jLevel]] {
       override def expect(action: LogAction[Slf4jLevel]) = action match {
         case LogAction.LogAt(Slf4jLevel.Info) => (target.info(_: String, _: Throwable)).expects(*, *) once

@@ -19,12 +19,14 @@ package atmos.monitor
 
 import java.util.logging.{Level, Logger}
 import org.scalamock.scalatest.MockFactory
-import org.scalatest._
+import org.scalatest.flatspec.AnyFlatSpec
+import org.scalatest.matchers.should.Matchers
+
 
 /**
  * Test suite for [[atmos.monitor.LogEventsWithJava]].
  */
-class LogEventsWithJavaSpec extends FlatSpec with Matchers with MockFactory {
+class LogEventsWithJavaSpec extends AnyFlatSpec with Matchers with MockFactory {
 
   val thrown = new RuntimeException
 

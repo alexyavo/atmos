@@ -19,7 +19,8 @@ package rummage
 
 import akka.actor.{ActorContext, ActorRef, ActorSystem, Cancellable, Scheduler}
 import org.scalamock.scalatest.MockFactory
-import org.scalatest._
+import org.scalatest.flatspec.AnyFlatSpec
+import org.scalatest.matchers.should.Matchers
 import scala.concurrent.duration._
 import scala.concurrent.{Await, ExecutionContext, Future}
 import scala.language.postfixOps
@@ -27,7 +28,7 @@ import scala.language.postfixOps
 /**
  * Test suite for the rummage clock API.
  */
-class ClocksSpec extends FlatSpec with Matchers with MockFactory {
+class ClocksSpec extends AnyFlatSpec with Matchers with MockFactory {
 
   import ExecutionContext.Implicits._
 

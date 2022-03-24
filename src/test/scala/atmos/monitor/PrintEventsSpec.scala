@@ -18,14 +18,15 @@
 package atmos.monitor
 
 import org.scalamock.scalatest.MockFactory
-import org.scalatest._
+import org.scalatest.flatspec.AnyFlatSpec
+import org.scalatest.matchers.should.Matchers
 import scala.concurrent.duration._
 import scala.util.{Failure, Success, Try}
 
 /**
  * Test suite for [[atmos.monitor.PrintEvents]].
  */
-class PrintEventsSpec extends FlatSpec with Matchers with MockFactory {
+class PrintEventsSpec extends AnyFlatSpec with Matchers with MockFactory {
 
   import PrintAction._
 

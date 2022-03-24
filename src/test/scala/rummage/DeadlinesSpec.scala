@@ -16,14 +16,15 @@
  */
 package rummage
 
-import org.scalatest._
+import org.scalatest.flatspec.AnyFlatSpec
+import org.scalatest.matchers.should.Matchers
 import scala.concurrent.duration._
 import scala.concurrent._
 
 /**
  * Test suite for the rummage deadline API.
  */
-class DeadlinesSpec extends FlatSpec with Matchers {
+class DeadlinesSpec extends AnyFlatSpec with Matchers {
 
   import Deadlines._
   import ExecutionContext.Implicits._

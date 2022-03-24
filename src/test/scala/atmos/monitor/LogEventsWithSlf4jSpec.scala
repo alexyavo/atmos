@@ -18,13 +18,14 @@
 package atmos.monitor
 
 import org.scalamock.scalatest.MockFactory
-import org.scalatest._
+import org.scalatest.flatspec.AnyFlatSpec
+import org.scalatest.matchers.should.Matchers
 import org.slf4j.Logger
 
 /**
  * Test suite for [[atmos.monitor.LogEventsWithSlf4j]].
  */
-class LogEventsWithSlf4jSpec extends FlatSpec with Matchers with MockFactory {
+class LogEventsWithSlf4jSpec extends AnyFlatSpec with Matchers with MockFactory {
 
   import LogEventsWithSlf4j.Slf4jLevel
 
@@ -49,11 +50,11 @@ class LogEventsWithSlf4jSpec extends FlatSpec with Matchers with MockFactory {
     val logger = mock[MockLogger]
 
     def expectIsEnabledOnce(enabled: Boolean) = level match {
-      case Slf4jLevel.Error => (logger.isErrorEnabled _).expects().returns(enabled).once
-      case Slf4jLevel.Warn => (logger.isWarnEnabled _).expects().returns(enabled).once
-      case Slf4jLevel.Info => (logger.isInfoEnabled _).expects().returns(enabled).once
-      case Slf4jLevel.Debug => (logger.isDebugEnabled _).expects().returns(enabled).once
-      case Slf4jLevel.Trace => (logger.isTraceEnabled _).expects().returns(enabled).once
+      case Slf4jLevel.Error => (logger.isErrorEnabled: () => Boolean).expects().returns(enabled).once
+      case Slf4jLevel.Warn => (logger.isWarnEnabled: () => Boolean).expects().returns(enabled).once
+      case Slf4jLevel.Info => (logger.isInfoEnabled: () => Boolean).expects().returns(enabled).once
+      case Slf4jLevel.Debug => (logger.isDebugEnabled: () => Boolean).expects().returns(enabled).once
+      case Slf4jLevel.Trace => (logger.isTraceEnabled: () => Boolean).expects().returns(enabled).once
     }
 
     def expectLogOnce(message: String, thrown: Option[Throwable]) = thrown match {

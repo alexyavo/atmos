@@ -17,14 +17,16 @@
 package atmos
 
 import org.scalamock.scalatest.MockFactory
-import org.scalatest._
 import scala.concurrent.duration._
 import scala.util.{Failure, Try}
+
+import org.scalamock.matchers.Matchers
+import org.scalatest.flatspec.AnyFlatSpec
 
 /**
  * Test suite for [[atmos.BackoffPolicy]].
  */
-class BackoffPolicySpec extends FlatSpec with Matchers with MockFactory {
+class BackoffPolicySpec extends AnyFlatSpec with Matchers with MockFactory {
 
   val thrown = new RuntimeException
 

@@ -20,13 +20,14 @@ package atmos.dsl
 import atmos.dsl.Slf4jSupport._
 import atmos.monitor._
 import org.scalamock.scalatest.MockFactory
-import org.scalatest._
+import org.scalatest.flatspec.AnyFlatSpec
+import org.scalatest.matchers.should.Matchers
 import org.slf4j.Logger
 
 /**
  * Test suite for [[atmos.dsl.Slf4jSupport]].
  */
-class Slf4jSupportSpec extends FlatSpec with Matchers with MockFactory {
+class Slf4jSupportSpec extends AnyFlatSpec with Matchers with MockFactory {
 
   "Slf4jSupport" should "support viewing Slf4j-logging-compatible objects as event monitors" in {
     val logger = mock[Logger]

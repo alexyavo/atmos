@@ -4,19 +4,19 @@
 
 name := "atmos"
 
-version := "2.2"
+version := "2.3"
 
 resolvers += Resolver.sonatypeRepo("public")
 
 description := "minimalist retry-on-failure behavior for scala"
 
-homepage := Some(url("http://github.com/paradoxical-io/"))
+homepage := Some(url("http://github.com/alexyavo/atmos"))
 
 startYear := Some(2013)
 
-organization := "io.paradoxical"
+organization := "io.alexyavo"
 
-organizationName := "paradoxical.io"
+organizationName := "alexyavo.io"
 
 scalacOptions ++= Seq (
   "-deprecation",
@@ -28,21 +28,20 @@ scalacOptions ++= Seq (
   "-language:postfixOps",
   "-language:experimental.macros",
   "-unchecked",
-  "-Ywarn-nullary-unit",
   "-Xlint",
   "-Xfuture"
 )
 
-organizationHomepage := Some(url("http://github.com/paradoxical-io/"))
+organizationHomepage := Some(url("https://github.com/alexyavo/"))
 
-scalaVersion := "2.12.2"
+scalaVersion := "2.13.8"
 
-crossScalaVersions := Seq("2.11.6", "2.12.2")
+crossScalaVersions := Seq("2.13.8")
 
 libraryDependencies ++= Seq(
-  "com.typesafe.akka" %% "akka-actor" % "2.5.3" % "provided",
+  "com.typesafe.akka" %% "akka-actor" % "2.5.24" % "provided",
   "org.slf4j" % "slf4j-api" % "1.7.5" % "provided",
-  "org.scalatest" %% "scalatest" % "3.0.3" % "test",
-  "org.scalamock" %% "scalamock-scalatest-support" % "3.6.0" % "test"
+  "org.scalatest" %% "scalatest" % "3.2.11" % "test",
+  "org.scalamock" %% "scalamock" % "5.2.0" % "test"
 )
 

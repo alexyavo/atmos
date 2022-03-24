@@ -17,13 +17,14 @@
  */
 package atmos.termination
 
-import org.scalatest._
+import org.scalatest.flatspec.AnyFlatSpec
+import org.scalatest.matchers.should.Matchers
 import scala.concurrent.duration._
 
 /**
  * Test suite for [[atmos.termination.AlwaysTerminate]].
  */
-class AlwaysTerminateSpec extends FlatSpec with Matchers {
+class AlwaysTerminateSpec extends AnyFlatSpec with Matchers {
 
   "AlwaysTerminate" should "signal for termination on any combination of inputs" in {
     for {

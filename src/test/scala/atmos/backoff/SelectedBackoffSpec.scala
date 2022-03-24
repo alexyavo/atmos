@@ -21,10 +21,13 @@ import org.scalatest._
 import scala.concurrent.duration._
 import scala.util.{Failure, Success}
 
+import org.scalatest.flatspec.AnyFlatSpec
+import org.scalatest.matchers.should.Matchers
+
 /**
  * Test suite for [[atmos.backoff.SelectedBackoff]].
  */
-class SelectedBackoffSpec extends FlatSpec with Matchers {
+class SelectedBackoffSpec extends AnyFlatSpec with Matchers {
 
   val normalResult = "normal"
   val specialResult = "special"

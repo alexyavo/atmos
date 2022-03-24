@@ -17,13 +17,14 @@
  */
 package atmos.termination
 
-import org.scalatest._
+import org.scalatest.flatspec.AnyFlatSpec
+import org.scalatest.matchers.should.Matchers
 import scala.concurrent.duration._
 
 /**
  * Test suite for [[atmos.termination.LimitAttempts]].
  */
-class LimitAttemptsSpec extends FlatSpec with Matchers {
+class LimitAttemptsSpec extends AnyFlatSpec with Matchers {
 
   "LimitAttempts" should "signal for termination after a specified number of attempts have been made" in {
     val policy = LimitAttempts(5)
