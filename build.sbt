@@ -44,3 +44,38 @@ libraryDependencies ++= Seq(
   "org.scalamock" %% "scalamock" % "5.2.0" % "test"
 )
 
+// ------------------------
+
+publishTo := sonatypePublishToBundle.value
+sonatypeRepository := "https://s01.oss.sonatype.org/service/local"
+sonatypeCredentialHost := "s01.oss.sonatype.org"
+
+// Your profile name of the sonatype account. The default is the same with the organization value
+publishMavenStyle := true
+
+publishArtifact in Test := false
+
+sonatypeProfileName := "alexyavo"
+
+pomIncludeRepository := { _ => false }
+
+pgpPassphrase := Some(sys.env.getOrElse("GPG_PASSWORD", default = "").toArray)
+
+scmInfo := Some(
+  ScmInfo(
+    url("https://github.com/alexyavo/atmos"),
+    "scm:git@github.alexyavo/atmos.git"
+  )
+)
+
+import xerial.sbt.Sonatype._
+
+sonatypeProjectHosting := Some(GitHubHosting(user="alexyavo", repository="atmos", email="alxndr.yav@gmail.com"))
+
+licenses := Seq("APL2" -> url("https://www.apache.org/licenses/LICENSE-2.0.txt"))
+
+developers := List(
+  Developer(id = "alexyavo", name = "Alex Y", url = url("https://github.com/alexyavo"), email="alxndr.yav@gmail.com")
+)
+
+publishTo := sonatypePublishToBundle.value
