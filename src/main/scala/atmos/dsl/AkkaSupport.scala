@@ -19,7 +19,6 @@ package atmos.dsl
 
 import akka.event.{Logging, LoggingAdapter}
 import atmos.monitor
-import scala.language.implicitConversions
 
 /**
  * Separate namespace for optional Akka support.

@@ -28,8 +28,6 @@ import scala.util.{Failure, Success, Try}
  * @param termination The strategy for determining when to abort a retry operation.
  * @param backoff     The strategy used to calculate delays between retries.
  * @param monitor     The monitor that is notified of retry events.
- * @param classifier  The classifier for errors raised during retry operations. This field is deprecated and will be
- *                    used as a fallback for the `errors` classifier, which should be used instead.
  * @param results     The classifier for results returned during retry operations.
  * @param errors      The classifier for errors raised during retry operations.
  */
@@ -37,7 +35,6 @@ case class RetryPolicy(
   termination: TerminationPolicy = RetryPolicy.defaultTermination,
   backoff: BackoffPolicy = RetryPolicy.defaultBackoff,
   monitor: EventMonitor = RetryPolicy.defaultMonitor,
-  @deprecated("Use `errors` instead of `classifier`.", "2.1") classifier: ErrorClassifier = RetryPolicy.defaultErrors,
   results: ResultClassifier = RetryPolicy.defaultResults,
   errors: ErrorClassifier = RetryPolicy.defaultErrors) {
 
@@ -51,7 +48,7 @@ case class RetryPolicy(
    * @param clock     The clock used to track time and wait out backoff delays.
    */
   def retry[T]()(operation: => T)(implicit clock: Clock): T =
-    new SyncRetryOperation(None, operation _).run()
+    new SyncRetryOperation(None, () => operation).run()
 
   /**
    * Performs the specified named operation synchronously, retrying according to this policy.
@@ -62,7 +59,7 @@ case class RetryPolicy(
    * @param clock     The clock used to track time and wait out backoff delays.
    */
   def retry[T](name: String)(operation: => T)(implicit clock: Clock): T =
-    new SyncRetryOperation(Some(name), operation _).run()
+    new SyncRetryOperation(Some(name), () => operation).run()
 
   /**
    * Performs the specified optionally named operation synchronously, retrying according to this policy.
@@ -73,7 +70,7 @@ case class RetryPolicy(
    * @param clock     The clock used to track time and wait out backoff delays.
    */
   def retry[T](name: Option[String])(operation: => T)(implicit clock: Clock): T =
-    new SyncRetryOperation(name, operation _).run()
+    new SyncRetryOperation(name, () => operation).run()
 
   /**
    * Performs the specified operation asynchronously, retrying according to this policy.
@@ -84,7 +81,7 @@ case class RetryPolicy(
    * @param clock     The clock used to track time and schedule backoff notifications.
    */
   def retryAsync[T]()(operation: => Future[T])(implicit ec: ExecutionContext, clock: Clock): Future[T] =
-    new AsyncRetryOperation(None, operation _).run()
+    new AsyncRetryOperation(None, () => operation).run()
 
   /**
    * Performs the specified optionally named operation asynchronously, retrying according to this policy.
@@ -96,7 +93,7 @@ case class RetryPolicy(
    * @param clock     The clock used to track time and schedule backoff notifications.
    */
   def retryAsync[T](name: String)(operation: => Future[T])(implicit ec: ExecutionContext, clock: Clock): Future[T] =
-    new AsyncRetryOperation(Some(name), operation _).run()
+    new AsyncRetryOperation(Some(name), () => operation).run()
 
   /**
    * Performs the specified optionally named operation asynchronously, retrying according to this policy.
@@ -108,7 +105,7 @@ case class RetryPolicy(
    * @param clock     The clock used to track time and schedule backoff notifications.
    */
   def retryAsync[T](name: Option[String])(operation: => Future[T])(implicit ec: ExecutionContext, clock: Clock): Future[T] =
-    new AsyncRetryOperation(name, operation _).run()
+    new AsyncRetryOperation(name, () => operation).run()
 
   /**
    * Base representation of a single operation being retried.
@@ -126,9 +123,6 @@ case class RetryPolicy(
     /** Sets the number of times the operation has been attempted. */
     def failedAttempts_=(failedAttempts: Int): Unit
 
-    /** Cached copy of the `classifier` field used as a fallback for the `errors` field. */
-    private val errorClassifier = errors orElse classifier
-
     /**
      * Analyzes the outcome of an attempt and determines the next step to take.
      *
@@ -143,7 +137,7 @@ case class RetryPolicy(
           afterAttemptFailed(outcome, Outcome.Return(result), status)
       }
       case Failure(thrown) =>
-        afterAttemptFailed(outcome, Outcome.Throw(thrown), errorClassifier.applyOrElse(thrown, ErrorClassification))
+        afterAttemptFailed(outcome, Outcome.Throw(thrown), errors.applyOrElse(thrown, ErrorClassification))
     }
 
     /**
@@ -282,10 +276,6 @@ object RetryPolicy {
 
   /** The default classifier for errors raised during retry operations. */
   val defaultErrors: ErrorClassifier = ErrorClassifier.empty
-
-  /** The default classifier for errors raised during retry operations. */
-  @deprecated("Use `defaultErrors` instead of `defaultClassifier`.", "2.1")
-  val defaultClassifier: ErrorClassifier = defaultErrors
 
   /**
    * Internal representation of the outcome of a retry attempt.

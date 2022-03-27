@@ -18,7 +18,6 @@
 package atmos.dsl
 
 import scala.concurrent.duration.FiniteDuration
-import scala.language.implicitConversions
 
 /**
  * A factory for duration-based backoff policies.

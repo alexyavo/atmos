@@ -21,7 +21,6 @@ import java.io.{PrintStream, PrintWriter}
 import rummage.{Clock, Deadlines}
 import scala.concurrent.duration._
 import scala.concurrent.{ExecutionContext, Future}
-import scala.language.implicitConversions
 import scala.util.Try
 
 /**

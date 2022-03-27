@@ -20,7 +20,6 @@ package atmos.dsl
 import atmos.monitor
 import atmos.monitor.LogEventsWithSlf4j.Slf4jLevel
 import org.slf4j.Logger
-import scala.language.implicitConversions
 
 /**
  * Separate namespace for optional SLF4J support.

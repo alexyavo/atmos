@@ -49,7 +49,7 @@ trait Timer {
    * @param ec       The execution context to perform the action on.
    */
   def every[U](interval: FiniteDuration)(f: => U)(implicit ec: ExecutionContext): Task =
-    submit(interval, Some(interval), f _)
+    submit(interval, Some(interval), () => f)
 
   /**
    * Submits a task for execution after the specified delay and possibly repeatedly thereafter, waiting the specified
@@ -78,7 +78,7 @@ trait Timer {
      * @param ec The execution context to perform the action on.
      */
     def apply[U](f: => U)(implicit ec: ExecutionContext): Task =
-      submit(delay, None, f _)
+      submit(delay, None, () => f)
 
     /**
      * Performs a task once after this builder's delay and repeatedly thereafter, waiting the specified interval
@@ -90,8 +90,7 @@ trait Timer {
      * @param ec       The execution context to perform the action on.
      */
     def andEvery[U](interval: FiniteDuration)(f: => U)(implicit ec: ExecutionContext): Task =
-      submit(delay, Some(interval), f _)
-
+      submit(delay, Some(interval), () => f)
   }
 
 }

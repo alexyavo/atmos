@@ -14,9 +14,9 @@ homepage := Some(url("http://github.com/alexyavo/atmos"))
 
 startYear := Some(2013)
 
-organization := "io.alexyavo"
+organization := "io.github.alexyavo"
 
-organizationName := "alexyavo.io"
+organizationName := "alexyavo.github.io"
 
 scalacOptions ++= Seq (
   "-deprecation",
@@ -29,7 +29,6 @@ scalacOptions ++= Seq (
   "-language:experimental.macros",
   "-unchecked",
   "-Xlint",
-  "-Xfuture"
 )
 
 organizationHomepage := Some(url("https://github.com/alexyavo/"))
