@@ -1,8 +1,8 @@
 # Forked version of Atmos
 
-![](https://travis-ci.org/paradoxical-io/atmos.svg?branch=master)
-
-Original repo located at: https://github.com/zmanio/atmos
+Original repo located at:
+- https://github.com/paradoxical-io/atmos/
+- https://github.com/zmanio/atmos
 
 ---
 
@@ -27,7 +27,7 @@ def doSomethingUntilItWorks(): String = {
         println("Retrying after empty result")
         Thread.sleep(backoff toMillis)
       }
-      return 
+      return
     } catch {
       case e: SomeImportantException =>
         println("Interrupted by important exception: " + e.getMessage)
@@ -554,4 +554,3 @@ sbt test
 # Generate test coverage reports:
 sbt scoverage:test
 ```
-
