@@ -1,5 +1,7 @@
 # Forked version of Atmos
 
+![example workflow](https://github.com/alexyavo/atmos/actions/workflows/test.yaml/badge.svg)
+
 Original repo located at:
 - https://github.com/paradoxical-io/atmos/
 - https://github.com/zmanio/atmos
