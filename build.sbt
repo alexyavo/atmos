@@ -55,7 +55,7 @@ publishMavenStyle := true
 
 publishArtifact in Test := false
 
-sonatypeProfileName := "alexyavo"
+sonatypeProfileName := "io.github.alexyavo"
 
 pomIncludeRepository := { _ => false }
 
